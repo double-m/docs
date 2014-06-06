@@ -1,5 +1,19 @@
-### How to connect to my laptop using its wifi card
-How to have an Atheros wifi card acting as an access point on Debian
+### How to connect to my laptop using its wifi card as an access point
+
+Compatibilityi note: the built-in Atheros is working, the old PCMCIA DWL-610 is not
+```
+lspci -vv |grep -i -A 9 atheros
+04:05.0 Ethernet controller: Atheros Communications Inc. AR2413 802.11bg NIC (rev 01)
+	...
+        Kernel driver in use: ath5k
+        Kernel modules: ath5k
+
+lspci -vv |grep -i -A 9 d-link
+05:00.0 Ethernet controller: D-Link System Inc DWL-510 2.4GHz Wireless PCI Adapter (rev 20)
+        ...
+        Kernel driver in use: rtl8180
+        Kernel modules: rtl8180
+```
 
 References:
 
@@ -37,34 +51,18 @@ EOF
 
 ```
 
-Test (`-dd` means verbose debug mode, CTRL-C to stop the daemon):
+Test (`-dd` means verbose debug mode; use CTRL-C to stop the daemon):
 
 ```
 hostapd -dd /etc/hostapd/hostapd.conf
 ```
 (now a wifi client can connect and authenticate, but it won't get any IP address)
 
-# TODO explain dhcpd
+### TODO explain dhcpd
 
 Manually start the daemons:
 ```
 /etc/init.d/hostapd start
-/etc/init.d/dhcpdd start
+/etc/init.d/dhcpd start
 
 ```
-
-Compatibility notes: Atheros is working, DWL-610 is not
-```
-lspci -vv |grep -i -A 9 atheros
-04:05.0 Ethernet controller: Atheros Communications Inc. AR2413 802.11bg NIC (rev 01)
-	...
-        Kernel driver in use: ath5k
-        Kernel modules: ath5k
-
-lspci -vv |grep -i -A 9 d-link
-05:00.0 Ethernet controller: D-Link System Inc DWL-510 2.4GHz Wireless PCI Adapter (rev 20)
-        ...
-        Kernel driver in use: rtl8180
-        Kernel modules: rtl8180
-```
-
