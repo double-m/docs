@@ -51,12 +51,13 @@ EOF
 
 ```
 
-Test (`-dd` means verbose debug mode; use CTRL-C to stop the daemon):
+Test (`-dd` means verbose debug mode):
 
 ```
 hostapd -dd /etc/hostapd/hostapd.conf
+
 ```
-(now a wifi client can connect and authenticate, but it won't get any IP address)
+(now a wifi client can connect and authenticate, but it won't get any IP address, so let's stop the daemon with a CTRL-C)
 
 Installation and configuration of `isc-dhcp-server` (as root):
 
@@ -88,6 +89,7 @@ cat /etc/network/interfaces | grep -A 4 wlan0
 # activate the new configuration for wlan0
 ifconfig wlan0 down # or ifdown if it was already configured
 ifup wlan0
+
 ```
 
 Manually start the daemons:
@@ -97,9 +99,10 @@ Manually start the daemons:
 
 ```
 
-For the final test, connect a Wifi device with an SSH client and:
+For the final test, connect to the laptop using a Wifi device having an SSH client installed on it:
 ```
 ssh user@10.10.0.1
+
 ```
 
 If needed at boot:
