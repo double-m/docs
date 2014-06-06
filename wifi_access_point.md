@@ -1,14 +1,13 @@
-# How to connect to my laptop using its wifi card
+### How to connect to my laptop using its wifi card
+How to have an Atheros wifi card acting as an access point on Debian
 
-## How to have an Atheros wifi card acting as an access point on Debian
-
-### Reference
+References:
 
 [http://www.cyberciti.biz/faq/debian-ubuntu-linux-setting-wireless-access-point](<http://www.cyberciti.biz/faq/debian-ubuntu-linux-setting-wireless-access-point>)
+[http://blog.dmaggot.org/2010/05/setting-up-an-atheros-based-ap-using-ath5k-and-hostapd](<http://blog.dmaggot.org/2010/05/setting-up-an-atheros-based-ap-using-ath5k-and-hostapd>)
+[http://askubuntu.com/questions/180733/how-to-setup-a-wi-fi-hotspot-access-point-mode](<http://askubuntu.com/questions/180733/how-to-setup-a-wi-fi-hotspot-access-point-mode>)
 
-### Procedure
-
-As root:
+Configuration (as root):
 
 ```
 apt-get install hostapd
@@ -40,7 +39,7 @@ Test (`-dd` means verbose debug mode, CTRL-C to stop the daemon):
 hostapd -dd /etc/hostapd/hostapd.conf
 ```
 
-Manually start the daemon
+Manually start the daemon:
 ```
 /etc/init.d/hostapd start
 ```
