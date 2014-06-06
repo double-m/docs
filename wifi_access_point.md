@@ -10,36 +10,39 @@
 
 As root:
 
-`apt-get install hostapd`
+```
+apt-get install hostapd
+update-rc.d -f hostap remove
 
-`sed -i '/^#DAEMON_CONF/a DAEMON_CONF="/etc/hostapd/hostapd.conf"' /etc/default/hostapd`
+sed -i '/^#DAEMON_CONF/a DAEMON_CONF="/etc/hostapd/hostapd.conf"' /etc/default/hostapd
 
-`cat << EOF | tee /etc/hostapd/hostapd.conf
-bridge=br0
-driver=ath5k
+cat << EOF | tee /etc/hostapd/hostapd.conf
+interface=wlan0
+driver=nl80211
 country_code=IT
-ssid=doublem
+ssid=double-m
 hw_mode=g
-channel=6
-
+channel=1
+auth_algs=1
 wpa=2
-wpa_passphrase=MyWiFiPassword
-## Key management algorithms ##
-wpa_key_mgmt=WPA-PSK 
-## Set cipher suites (encryption algorithms) ##
-## TKIP = Temporal Key Integrity Protocol
-## CCMP = AES in Counter mode with CBC-MAC
+wpa_passphrase=testtest
+wpa_key_mgmt=WPA-PSK
 wpa_pairwise=TKIP
 rsn_pairwise=CCMP
-## Shared Key Authentication ##
-auth_algs=1
-## Accept all MAC address ###
 macaddr_acl=0
 EOF
-`
 
-Test (`-dd` means verbose debug mode):
+```
 
-`hostapd -dd /etc/hostapd/hostapd.conf
-/etc/init.d/hostapd restart
-`
+Test (`-dd` means verbose debug mode, CTRL-C to stop the daemon):
+
+```
+hostapd -dd /etc/hostapd/hostapd.conf
+```
+
+Manually start the daemon
+```
+/etc/init.d/hostapd start
+```
+
+### Compatibility notes
