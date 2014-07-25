@@ -57,3 +57,19 @@ Check:
 - [http://www.myproject.local/hello/marcello](<http://www.myproject.local/hello/marcello>) (production version)
 - [http://www.myproject.local/app_dev.php/hello/marcello](<http://www.myproject.local/app_dev.php/hello/marcello>) (development version - more logging)
 - [http://www.myproject.local/app_dev.php](<http://www.myproject.local/app_dev.php>) (ACME Bundle)
+
+## Symfony2 Project in Subversion
+
+Reference: [http://symfony.com/doc/master/cookbook/workflow/new_project_svn.html](<http://symfony.com/doc/master/cookbook/workflow/new_project_svn.html>)
+
+Hi, I'm Jimmy and I'm joining the project development: where should I start from?
+
+```
+svn co protocol://path/to/ourproject/trunk ourproject
+cd ourproject
+cp app/config/parameters.yml.dist app/config/parameters.yml # maybe some editing is needed in parameters.yml
+composer install
+phpunit -c app
+
+# then configure a web server accordingly and you're set
+```
