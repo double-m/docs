@@ -1,4 +1,4 @@
-## Symfony HowTo
+## Symfony HowTo - Deprecated
 
 ### Mapping a virtual host on the working copy using Apache HTTP Server 2.4
 
