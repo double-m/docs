@@ -18,9 +18,9 @@ A new Symfony installation
 ```
 $ symfony new my_todolist 2.8
 
-cd my_todolist
+  cd my_todolist
 
-$ rm -rf app/cache/*
+  rm -rf app/cache/*
   rm -rf app/logs/*
   HTTPDUSER=www-data
   sudo setfacl -R -m u:"$HTTPDUSER":rwX -m u:`whoami`:rwX app/cache app/logs
@@ -41,7 +41,7 @@ $ vi app/config/parameters.yml # use value 'todolist' for 'database_name', 'sata
   php app/console doctrine:database:create
 ```
 
-A new Bundle (TodoBundle) with a single Entity (Todo)
+A new Bundle (TodoBundle) with a single Entity (Todo); when asked, insert a field 'title' (not nullable) and a field 'description' (nullable)
 
 ```
 $ php app/console generate:bundle -n --namespace=TodoBundle --format=yml
